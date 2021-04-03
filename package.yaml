@@ -24,6 +24,10 @@ dependencies:
 
 library:
   source-dirs: src
+  dependencies:
+    - aeson
+    - containers
+    - time
 
 executables:
   json-typedef-haskell-exe:
