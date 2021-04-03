@@ -38,6 +38,7 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - aeson
     - json-typedef-haskell
 
 tests:
