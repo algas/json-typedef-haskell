@@ -4,6 +4,7 @@ module Data.JTD.Base where
 
 import Data.Aeson
 import Data.Text (Text)
+import qualified Data.ByteString.Lazy as B
 import Data.Time (UTCTime)
 import Data.Int (Int8, Int16, Int32)
 import Data.Word (Word8, Word16, Word32)
@@ -106,3 +107,8 @@ data JTD = JTD {
 
 instance FromJSON JTD where
   parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = drop 3 }
+
+decodeJSON filePath = do
+  content <- B.readFile filePath
+  let dec = decode content :: Maybe (HashMap Text JTD)
+  return dec
