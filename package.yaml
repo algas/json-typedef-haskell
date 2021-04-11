@@ -50,4 +50,5 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - HUnit
     - json-typedef-haskell
