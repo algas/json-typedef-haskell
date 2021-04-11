@@ -2,15 +2,26 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE OverloadedStrings #-}
-module Data.JTD.Schema where
+module Data.JTD.SchemaExample where
 
 import Prelude hiding (Enum)
+import GHC.Generics
 import Data.Aeson
+    ( (.:),
+      (.:?),
+      withObject,
+      withText,
+      object,
+      FromJSON(parseJSON),
+      Value(String),
+      KeyValue((.=)),
+      ToJSON(toJSON) )
 import Data.Aeson.Types
 import Data.Map (Map)
 import Data.Time (UTCTime)
 import Data.Int (Int8, Int16, Int32)
 import Data.Word (Word8, Word16, Word32)
+import Data.Maybe (isNothing)
 
 type Empty = ()
 
@@ -29,7 +40,9 @@ data Type = Type {
   , uint16 :: Word16
   , int32 :: Int32
   , uint32 :: Word32
-}
+} deriving (Show, Generic)
+instance FromJSON Type
+instance ToJSON Type
 
 data Enum = Done | InProgress | Pending
   deriving (Show)

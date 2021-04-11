@@ -25,7 +25,8 @@ source-repository head
 
 library
   exposed-modules:
-      Data.JTD.Schema
+      Data.JTD.Base
+      Data.JTD.SchemaExample
       Lib
   other-modules:
       Paths_json_typedef_haskell
@@ -35,7 +36,11 @@ library
       aeson
     , base >=4.7 && <5
     , containers
+    , scientific
+    , text
     , time
+    , unordered-containers
+    , vector
   default-language: Haskell2010
 
 executable json-typedef-haskell-exe

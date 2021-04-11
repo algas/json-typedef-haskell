@@ -27,7 +27,11 @@ library:
   dependencies:
     - aeson
     - containers
+    - scientific
+    - text
     - time
+    - unordered-containers
+    - vector
 
 executables:
   json-typedef-haskell-exe:
