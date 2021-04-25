@@ -27,7 +27,6 @@ library
   exposed-modules:
       Data.JTD.Base
       Data.JTD.SchemaExample
-      Lib
   other-modules:
       Paths_json_typedef_haskell
   hs-source-dirs:
