@@ -18,7 +18,7 @@ import GHC.Generics
 data JTDError = JTDError {
     instancePath :: [String]
   , schemaPath :: [String]
-} deriving (Show, Generic)
+} deriving (Show, Eq, Generic)
 instance FromJSON JTDError
 
 -- data JTDRawInstanceType
@@ -51,7 +51,7 @@ data JTDSchema = JTDSchema {
   , jtdref :: Maybe Text
   , jtdnullable :: Maybe Bool
   , jtdemetadata :: Maybe Value
-} deriving (Show, Generic)
+} deriving (Show, Eq, Generic)
 instance FromJSON JTDSchema where
   parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = drop 3 }
 
@@ -103,12 +103,12 @@ data JTD = JTD {
     jtdschema :: JTDSchema
   , jtdinstance :: Value
   , jtderrors :: [JTDError]
-} deriving (Show, Generic)
+} deriving (Show, Eq, Generic)
 
 instance FromJSON JTD where
   parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = drop 3 }
 
 decodeJSON filePath = do
   content <- B.readFile filePath
-  let dec = decode content :: Maybe (HashMap Text JTD)
+  let dec = decode content :: Maybe (HashMap String JTD)
   return dec

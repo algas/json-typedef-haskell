@@ -9,7 +9,7 @@ import Data.Aeson.Types
 
 main :: IO ()
 main = do
-  print (decode "{\"schema\": {},\"instance\": null,\"errors\": []}" :: Maybe JTD)
+  -- print (decode "{\"schema\": {},\"instance\": null,\"errors\": []}" :: Maybe JTD)
   json <- decodeJSON "./validation.json"
   print json
   -- print (decode "{\"foo\":\"bar\"}" :: Maybe Value)

@@ -56,4 +56,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - HUnit
+    - unordered-containers
     - json-typedef-haskell

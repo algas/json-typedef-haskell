@@ -1,12 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 import Test.HUnit
 import Data.JTD.Base
+import Data.JTD.Validator
+import Data.HashMap.Strict (toList)
 
--- test1 = TestCase (assertEqual "hello test" 1 1)
-test1 = TestCase $ do
-          validationData <- decodeJSON "./validation.json"
-          assertBool "validation" True
+testJTD label jtd = TestCase $ assertBool label $ validateJTD jtd
 
 main :: IO ()
 main = do
-  runTestTTAndExit $ TestList [TestLabel "test1" test1]
+  validationData <- decodeJSON "./validation.json"
+  case validationData of
+    Just ds -> runTestTTAndExit $ TestList [testJTD k v | (k,v) <- toList ds ]
+    _ -> fail "invalid json"
