@@ -99,16 +99,16 @@ instance FromJSON JTDSchema where
 --       _ -> fail "object is not one of JTD values" 
 
 
-data JTD = JTD {
+data JTDValidation = JTDValidation {
     jtdschema :: JTDSchema
   , jtdinstance :: Value
   , jtderrors :: [JTDError]
 } deriving (Show, Eq, Generic)
 
-instance FromJSON JTD where
+instance FromJSON JTDValidation where
   parseJSON = genericParseJSON $ defaultOptions { fieldLabelModifier = drop 3 }
 
 decodeJSON filePath = do
   content <- B.readFile filePath
-  let dec = decode content :: Maybe (HashMap String JTD)
+  let dec = decode content :: Maybe (HashMap String JTDValidation)
   return dec
